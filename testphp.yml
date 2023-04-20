@@ -1,0 +1,86 @@
+---
+env:
+  contexts:
+    - name: "Default Context"
+      urls:
+        - "http://testphp.vulnweb.com/"
+      includePaths:
+        - "http://testphp.vulnweb.com/.*"
+      excludePaths: []
+      authentication:
+        method: "form"
+        parameters:
+          loginPageUrl: "http://testphp.vulnweb.com/login.php"
+          loginRequestUrl: "http://testphp.vulnweb.com/userinfo.php"
+          loginRequestBody: "uname={%username%}&pass={%password%}"
+        verification:
+          method: "response"
+          loggedInRegex: "Logout"
+          loggedOutRegex: "login"
+          pollFrequency: 60
+          pollUnits: "requests"
+          pollUrl: ""
+          pollPostData: ""
+      sessionManagement:
+        method: "cookie"
+        parameters: {}
+      technology:
+        exclude: []
+      users:
+        - name: "test_user"
+          credentials:
+            password: "test"
+            username: "test"
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+  vars: {}
+jobs:
+  - parameters:
+      scanOnlyInScope: true
+      enableTags: false
+    rules: []
+    name: "passiveScan-config"
+    type: "passiveScan-config"
+  - parameters:
+      context: "Default Context"
+      user: "test_user"
+      url: ""
+      maxDuration: 0
+      maxDepth: 0
+      maxChildren: 0
+    name: "spider"
+    type: "spider"
+  - parameters:
+      context: "Default Context"
+      user: "test_user"
+      url: ""
+      maxDuration: 60
+      maxCrawlDepth: 10
+      numberOfBrowsers: 1
+      runOnlyIfModern: false
+    name: "spiderAjax"
+    type: "spiderAjax"
+  - parameters: {}
+    name: "passiveScan-wait"
+    type: "passiveScan-wait"
+  - parameters:
+      context: "Default Context"
+      user: "test_user"
+      policy: ""
+      maxRuleDurationInMins: 0
+      maxScanDurationInMins: 0
+    policyDefinition:
+      defaultStrength: "medium"
+      defaultThreshold: "medium"
+      rules: []
+    name: "activeScan"
+    type: "activeScan"
+  - parameters:
+      template: "risk-confidence-html"
+      reportDir: ""
+      reportTitle: "ZAP Scanning Report"
+      reportDescription: ""
+    name: "report"
+    type: "report"
