@@ -20,7 +20,7 @@ jobs:
     - name: Checkmarx DAST Github Action
       uses: Checkmarx/dast-github-action@v1.0.2
       env:
-        CX_APIKEY: ${{ secrets.CX_ONE_API_KEY }}
+        CX_APIKEY: ${{ secrets.CX_APIKEY }}
       with:
         command: "web"
         config: './testphp.yml'
