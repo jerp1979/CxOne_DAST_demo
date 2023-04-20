@@ -23,7 +23,7 @@ jobs:
         CX_APIKEY: ${{ secrets.CX_ONE_API_KEY }}
       with:
         command: "web"
-        config: './testphp.yml'
+        config: 'testphp.yml'
         base_url: "https://deu.ast.checkmarx.net/"
         environment_id: "08149bf3-dc33-4c35-a432-4fc476e274af"
         fail_on: "HIGH"
