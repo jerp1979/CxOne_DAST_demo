@@ -1,0 +1,30 @@
+name: CxJERP Gin Juice
+# Controls when the workflow will run
+on:
+  workflow_dispatch: # *** this adds a run button ***
+# Steps represent a sequence of tasks that will be executed as part of the job
+permissions:
+  contents: read
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+    # Scan Iac with kics
+    - name: Checkmarx DAST Github Action
+      uses: Checkmarx/dast-github-action@v1.0.0-beta
+      env:
+        CX_APIKEY: ${{ secrets.CX_ONE_API_KEY }}
+      with:
+        command: "web"
+        config: 'zap_config.yaml'
+        base_url: "localhost.cxast.net"
+        environment_id: "c608a51a-ec4e-4eef-81c4-a0241737efd7"
+        fail_on: "HIGH"
+        verbose: true
