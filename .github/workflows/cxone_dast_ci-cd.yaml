@@ -1,4 +1,4 @@
-name: CxJERP Gin Juice
+name: CxJERP Security Tweets
 # Controls when the workflow will run
 on:
   workflow_dispatch: # *** this adds a run button ***
@@ -31,7 +31,7 @@ jobs:
         verbose: true
         output: ./output
     - name: Reclaim output directory  
-      if: always()  
+      if: always() 
       run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
     - uses: actions/upload-artifact@v3
       if: always()
