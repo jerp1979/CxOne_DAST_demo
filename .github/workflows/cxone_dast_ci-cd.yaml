@@ -24,7 +24,7 @@ jobs:
       with:
         command: "web"
         config: 'zap_config.yaml'
-        base_url: "localhost.cxast.net"
-        environment_id: "c608a51a-ec4e-4eef-81c4-a0241737efd7"
+        base_url: "https://deu.ast.checkmarx.net/"
+        environment_id: "08149bf3-dc33-4c35-a432-4fc476e274af"
         fail_on: "HIGH"
         verbose: true
