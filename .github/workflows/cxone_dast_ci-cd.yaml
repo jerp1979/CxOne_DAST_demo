@@ -23,7 +23,7 @@ jobs:
         CX_APIKEY: ${{ secrets.CX_APIKEY }}
       with:
         command: "web"
-        config: "./security_tweets.yaml"
+        config: './security_tweets.yaml'
         base_url: "https://deu.ast.checkmarx.net/"
         #environment_id: "08149bf3-dc33-4c35-a432-4fc476e274af"
         environment_id: "24e3b348-796d-4d80-9f49-45089ffbba28"
@@ -33,7 +33,7 @@ jobs:
     - name: Reclaim output directory  
       if: always() 
       run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v3.0.2
       if: always()
       name: Upload Logs
       with:
