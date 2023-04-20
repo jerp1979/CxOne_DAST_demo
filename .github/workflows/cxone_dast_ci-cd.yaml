@@ -33,7 +33,7 @@ jobs:
     - name: Reclaim output directory  
       if: always() 
       run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
-    - uses: actions/upload-artifact@v3.0.2
+    - uses: actions/upload-artifact@v3.0.1
       if: always()
       name: Upload Logs
       with:
