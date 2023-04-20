@@ -28,13 +28,13 @@ jobs:
         environment_id: "08149bf3-dc33-4c35-a432-4fc476e274af"
         fail_on: "HIGH"
         verbose: true
-        output: ./output
-    - name: Reclaim output directory  
-      if: always()  
-      run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
-    - uses: actions/upload-artifact@v3
-      if: always()
-      name: Upload Logs
-      with:
-        name: report
-        path: ./output
+        #output: ./output
+    #- name: Reclaim output directory  
+     # if: always()  
+      #run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
+    #- uses: actions/upload-artifact@v3
+     # if: always()
+      #name: Upload Logs
+      #with:
+       # name: report
+        #path: ./output
