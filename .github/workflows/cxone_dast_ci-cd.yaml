@@ -28,7 +28,7 @@ jobs:
         base_url: "https://deu.ast.checkmarx.net/"
         #environment_id: "08149bf3-dc33-4c35-a432-4fc476e274af"
         environment_id: "24e3b348-796d-4d80-9f49-45089ffbba28"
-        #fail_on: "HIGH"
+        fail_on: "HIGH"
         verbose: true
         output: ./output
     - name: Reclaim output directory  
